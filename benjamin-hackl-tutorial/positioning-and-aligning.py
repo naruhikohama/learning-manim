@@ -53,3 +53,21 @@ class UsefulUnits(Scene):
         d = Dot()
         d.shift(100 * Pixels * RIGHT)
         self.add(d)
+
+class Grouping(Scene):
+    def construct(self):
+        red_dot = Dot(color=RED)
+        green_dot = Dot(color=GREEN).next_to(red_dot, RIGHT)
+        blue_dot = Dot(color=BLUE).next_to(red_dot, UP)
+        dot_group = VGroup(red_dot, green_dot, blue_dot)
+
+        dot_group.to_edge(RIGHT)
+        self.add(dot_group)
+
+        circles = VGroup(*[Circle(radius=0.2) for _ in range(10)])
+        circles.arrange(UP)
+        self.add(circles)
+
+        stars = VGroup(*[Star(color=YELLOW, fill_opacity=1).scale(0.5) for _ in range(20)])
+        stars.arrange_in_grid(5, 4, buff = 0.2)
+        self.add(stars)
